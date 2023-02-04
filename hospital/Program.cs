@@ -72,15 +72,11 @@ namespace hospital
 		}
 
 
-		// 3. Видалити обстеження, які були проведені раніше певної дати (TO DO)
+		// 3. Видалити обстеження, які були проведені раніше певної дати
 		public void DeleteExaminations(string time)
 		{
 			SqlCommand command = connection.CreateCommand();
-			//command.CommandText = $"delete from Examinations " +
-			//						$"where Id = ANY( " +
-			//						$"select de.ExaminationId " +
-			//						$"from DoctorsExaminations as de " +
-			//						$"where StartTime < '{time}')";
+			command.CommandText = $"delete from DoctorsExaminations where StartTime < '{time}'";
 
 			command.ExecuteNonQuery();
 		}
