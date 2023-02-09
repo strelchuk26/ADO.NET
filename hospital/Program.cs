@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace hospital
@@ -41,7 +42,9 @@ namespace hospital
 			SqlCommand command = connection.CreateCommand();
 			command.CommandText = $"select w.Places " +
 								  $"from Wards as w join Departments as d on w.DepartmentId = d.Id " +
-								  $"where d.Name = '{dep_name}'";
+								  $"where d.Name = @dep_name";
+
+			command.Parameters.Add("@dep_name", SqlDbType.NVarChar).Value = dep_name;
 
 			return (int)command.ExecuteScalar();
 		}
@@ -68,6 +71,7 @@ namespace hospital
 				});
 			}
 
+			reader.Close();
 			return examinations;
 		}
 
@@ -76,7 +80,9 @@ namespace hospital
 		public void DeleteExaminations(string time)
 		{
 			SqlCommand command = connection.CreateCommand();
-			command.CommandText = $"delete from DoctorsExaminations where StartTime < '{time}'";
+			command.CommandText = $"delete from DoctorsExaminations where StartTime < @time";
+
+			command.Parameters.Add("@time", SqlDbType.Time).Value = time;
 
 			command.ExecuteNonQuery();
 		}
@@ -88,7 +94,9 @@ namespace hospital
 			SqlCommand command = connection.CreateCommand();
 			command.CommandText = $"select * " +
 								  $"from Doctors " +
-								  $"where Salary > {salary}";
+								  $"where Salary > @salary";
+
+			command.Parameters.Add("@salary", SqlDbType.Money).Value = salary;
 
 			SqlDataReader reader = command.ExecuteReader();
 
@@ -106,6 +114,7 @@ namespace hospital
 				});
 			}
 
+			reader.Close();
 			return list;
 		}
 
@@ -126,7 +135,9 @@ namespace hospital
 		public void AddExamination(string name)
 		{
 			SqlCommand command = connection.CreateCommand();
-			command.CommandText = $"insert into Examinations (Name) values ('{name}')";
+			command.CommandText = $"insert into Examinations (Name) values (@name)";
+
+			command.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
 
 			command.ExecuteNonQuery();
 		}
@@ -149,14 +160,14 @@ namespace hospital
 		{
 			HospitalManager manager = new HospitalManager();
 
-			//foreach (var d in manager.GetAllDoctorsAboveSalary(5000))
-			//{
-			//	Console.WriteLine($"[{d.Id}] {d.Name} {d.Surname} - {d.Salary} + {d.Premium}");
-			//}
+			foreach (var d in manager.GetAllDoctorsAboveSalary(5000))
+			{
+				Console.WriteLine($"[{d.Id}] {d.Name} {d.Surname} - {d.Salary} + {d.Premium}");
+			}
 
-			//Console.WriteLine(manager.GetBiggestDonation());
+			Console.WriteLine(manager.GetBiggestDonation());
 
-			//manager.GetCountOfPlaces("Rim Lichen");
+			manager.GetCountOfPlaces("Rim Lichen");
 		}
 	}
 }

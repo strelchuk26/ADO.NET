@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LENOVO\\source\\repos\\ADO.NET\\hospital\\hospital.csproj": {}
+    "C:\\Users\\LENOVO\\Documents\\GitHub\\ADO.NET\\hospital\\hospital.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LENOVO\\source\\repos\\ADO.NET\\hospital\\hospital.csproj": {
+    "C:\\Users\\LENOVO\\Documents\\GitHub\\ADO.NET\\hospital\\hospital.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LENOVO\\source\\repos\\ADO.NET\\hospital\\hospital.csproj",
+        "projectUniqueName": "C:\\Users\\LENOVO\\Documents\\GitHub\\ADO.NET\\hospital\\hospital.csproj",
         "projectName": "hospital",
-        "projectPath": "C:\\Users\\LENOVO\\source\\repos\\ADO.NET\\hospital\\hospital.csproj",
+        "projectPath": "C:\\Users\\LENOVO\\Documents\\GitHub\\ADO.NET\\hospital\\hospital.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LENOVO\\source\\repos\\ADO.NET\\hospital\\obj\\",
+        "outputPath": "C:\\Users\\LENOVO\\Documents\\GitHub\\ADO.NET\\hospital\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
