@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -22,10 +23,9 @@ namespace hospital
 
 	public class HospitalManager
 	{ 
-		const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hospital_Test;Integrated Security=True;";
 		SqlConnection connection;
 
-		public HospitalManager()
+		public HospitalManager(string connectionString)
 		{
 			connection = new SqlConnection(connectionString);
 			connection.Open();
@@ -158,7 +158,8 @@ namespace hospital
 	{
 		static void Main(string[] args)
 		{
-			HospitalManager manager = new HospitalManager();
+			string conStr = ConfigurationManager.ConnectionStrings["HospitalDB"].ConnectionString;
+			HospitalManager manager = new HospitalManager(conStr);
 
 			foreach (var d in manager.GetAllDoctorsAboveSalary(5000))
 			{
