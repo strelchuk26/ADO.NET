@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace sales
 {
 	public class SalesManager
 	{
-		private const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Sales;Integrated Security=True;";
 		private SqlConnection connection;
 
 		public SalesManager()
 		{
+			string connectionString = ConfigurationManager.ConnectionStrings["HospitalDb"].ConnectionString;
 			connection = new SqlConnection(connectionString);
 			connection.Open();
 		}
@@ -136,7 +137,7 @@ namespace sales
 		{
 			SalesManager manager = new SalesManager();
 
-			manager.ShowBiggestSaleAmount();
+			
 
 		}
 	}
